@@ -9,7 +9,8 @@
     initBeaconWallet,
     initThanosWallet,
     userAddress,
-    storeAddress;
+    storeAddress,
+    isMobile;
 
   $: if (userAddress) {
     // check if user is owner
@@ -135,9 +136,13 @@
   {#if !userAddress}
     <h4>Connect your wallet</h4>
     <div class="buttons">
-      <button on:click={initBeaconWallet}>Beacon</button>
-      <button on:click={initTezBridgeWallet}>TezBridge</button>
-      <button on:click={initThanosWallet}>Thanos</button>
+      {#if isMobile}
+        <button on:click={initTezBridgeWallet}>TezBridge</button>
+      {:else}
+        <button on:click={initBeaconWallet}>Beacon</button>
+        <button on:click={initTezBridgeWallet}>TezBridge</button>
+        <button on:click={initThanosWallet}>Thanos</button>
+      {/if}
     </div>
   {:else if userAddress && !loading}
     {#if !successBuy}
