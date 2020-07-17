@@ -115,6 +115,12 @@
     text-decoration: none;
     color: inherit;
   }
+
+  @media only screen and (max-width: 1024px) {
+    footer {
+      width: 95vw;
+    }
+  }
 </style>
 
 <main>

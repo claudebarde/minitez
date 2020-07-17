@@ -56,7 +56,7 @@
     }
     .navigation-mobile div {
       color: white;
-      padding: 10px 30px;
+      padding: 10px;
       text-align: center;
       cursor: pointer;
       font-weight: bold;
