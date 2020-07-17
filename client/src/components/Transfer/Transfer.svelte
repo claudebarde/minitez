@@ -25,6 +25,7 @@
         const op = await miniTez.methods
           .main(transferTokensto, tokensToTransfer)
           .send();
+        txHash = op.opHash;
         await op.confirmation();
         successTransfer = true;
         window.confetti.start();
@@ -36,6 +37,7 @@
           successTransfer = false;
           tokensToTransfer = "";
           transferTokensto = "";
+          txHash = undefined;
           window.confetti.remove();
         }, 5000);
       } catch (error) {
@@ -81,6 +83,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+    font-style: italic;
+  }
+  a:hover {
+    text-decoration: underline;
   }
 </style>
 
@@ -141,7 +152,7 @@
     {/if}
   {:else if userAddress && loading}
     <h4>
-      Processing your payment,
+      Processing your transfer,
       <br />
       please wait.
     </h4>

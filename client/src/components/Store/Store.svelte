@@ -1,7 +1,8 @@
 <script>
-  import { onMount } from "svelte";
+  import { onMount, afterUpdate } from "svelte";
   import { fly } from "svelte/transition";
   import storeImg from "../../../public/shop.png";
+  import Admin from "../Admin/Admin.svelte";
 
   export let Tezos,
     initTezBridgeWallet,
@@ -10,12 +11,25 @@
     userAddress,
     storeAddress;
 
+  $: if (userAddress) {
+    // check if user is owner
+    storeInstance
+      .storage()
+      .then(storage => {
+        if (storage.owner === userAddress) {
+          isOwner = true;
+        }
+      })
+      .catch(error => console.log(error));
+  }
+
   let tokenAmount = "";
   let storeInstance = undefined;
   let tokenPrice = undefined;
   let loading = false;
   let txHash = undefined;
   let successBuy = false;
+  let isOwner = false;
 
   const calculatePrice = (tokenAmount, tokenPrice) => {
     if (tokenAmount && tokenAmount > 0) {
@@ -57,12 +71,14 @@
   onMount(() => {
     // the parent component needs a little delay to set Tezos properly
     setTimeout(async () => {
-      try {
-        storeInstance = await Tezos.wallet.at(storeAddress);
-        const storage = await storeInstance.storage();
-        tokenPrice = storage.price.toNumber() / 1000000;
-      } catch (error) {
-        console.log(error);
+      if (Tezos && storeAddress && !tokenPrice) {
+        try {
+          storeInstance = await Tezos.wallet.at(storeAddress);
+          const storage = await storeInstance.storage();
+          tokenPrice = storage.price.toNumber() / 1000000;
+        } catch (error) {
+          console.log(error);
+        }
       }
     }, 500);
   });
@@ -158,5 +174,8 @@
         <h4>Check the transaction hash</h4>
       </a>
     {/if}
+  {/if}
+  {#if isOwner}
+    <Admin {storeInstance} />
   {/if}
 </div>

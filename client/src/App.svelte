@@ -8,10 +8,18 @@
   import Navigation from "./components/Navigation/Navigation.svelte";
   import Store from "./components/Store/Store.svelte";
   import Transfer from "./components/Transfer/Transfer.svelte";
+  import config from "./config.js";
 
-  const storeAddress = "KT1SVmTS2UH9ffbPYbmgLG2hArSH6HT123Ra";
-  const miniTezAddress = "KT1URhAn8GHBy9Jjtd12CZve81uCERWwWPsb";
-  let userAddress = undefined;
+  let storeAddress, miniTezAddress, userAddress;
+  const { network, local, carthagenet } = config;
+  if (network === "local") {
+    storeAddress = local.storeAddress;
+    miniTezAddress = local.miniTezAddress;
+  } else if (network === "carthagenet") {
+    storeAddress = carthagenet.storeAddress;
+    miniTezAddress = carthagenet.miniTezAddress;
+  }
+
   let currentPage = "store";
 
   const initTezBridgeWallet = async () => {
@@ -74,7 +82,12 @@
   };
 
   onMount(async () => {
-    Tezos.setProvider({ rpc: "http://localhost:8732" });
+    Tezos.setProvider({
+      rpc:
+        network === "local"
+          ? "http://localhost:8732"
+          : "https://carthagenet.smartpy.io"
+    });
   });
 </script>
 
