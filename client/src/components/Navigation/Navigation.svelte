@@ -97,6 +97,15 @@
           Github
         </a>
       </p>
+      <p>
+        <a
+          href="https://better-call.dev/carthagenet/KT1U5Nj9CaknwZn6yb8Dxd8cNmJMQw8M1X2p/code"
+          target="_blank"
+          rel="noopener noreferrer">
+          <i class="fas fa-laptop-code" />
+          Code
+        </a>
+      </p>
     </div>
   {:else}
     <div on:click={() => (open = true)} in:fade={{ delay: 500 }}>

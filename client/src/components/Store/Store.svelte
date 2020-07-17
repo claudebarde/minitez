@@ -116,11 +116,7 @@
     <strong>MiniTez Store</strong>
   </h1>
   <img src={storeImg} alt="token shop" />
-  <h3>
-    Own the most minimalistic token on Tezos
-    <br />
-    and help the creation of more educational content!
-  </h3>
+  <h3>Own the most minimalistic token on Tezos!</h3>
   <h4>How many tokens would you like?</h4>
   <div class="token-input-container">
     <input
