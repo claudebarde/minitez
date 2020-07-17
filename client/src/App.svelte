@@ -37,7 +37,7 @@
     // connect with beacon
     try {
       const options = {
-        name: "Contract Originator",
+        name: "MiniTez",
         eventHandlers: {
           PERMISSION_REQUEST_SUCCESS: {
             handler: async data => {}
@@ -53,7 +53,7 @@
       const wallet = new BeaconWallet(options);
       await wallet.requestPermissions({
         network: {
-          type: "custom"
+          type: network === "local" ? "custom" : network
         }
       });
       await Tezos.setWalletProvider(wallet);
@@ -71,8 +71,8 @@
         throw new Error("Thanos Wallet not installed");
       }
 
-      const wallet = new ThanosWallet("Contract Originator");
-      await wallet.connect("sandbox");
+      const wallet = new ThanosWallet("MiniTez");
+      await wallet.connect(network === "local" ? "sandbox" : network);
       await Tezos.setWalletProvider(wallet);
 
       userAddress = wallet.pkh;
