@@ -19,6 +19,9 @@
   } else if (network === "carthagenet") {
     storeAddress = carthagenet.storeAddress;
     miniTezAddress = carthagenet.miniTezAddress;
+  } else if (network === "mainnet") {
+    storeAddress = mainnet.storeAddress;
+    miniTezAddress = mainnet.miniTezAddress;
   }
 
   let currentPage = "store";
@@ -83,11 +86,16 @@
   };
 
   onMount(async () => {
+    let rpc;
+    if (network === "local") {
+      rpc = "http://localhost:8732";
+    } else if (network === "carthagenet") {
+      rpc = "https://carthagenet.smartpy.io";
+    } else if (network === "mainnet") {
+      rpc = "https://mainnet.smartpy.io";
+    }
     Tezos.setProvider({
-      rpc:
-        network === "local"
-          ? "http://localhost:8732"
-          : "https://carthagenet.smartpy.io"
+      rpc
     });
     // checks if user is on mobile device
     (function(a) {

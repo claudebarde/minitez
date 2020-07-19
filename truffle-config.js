@@ -25,7 +25,8 @@ module.exports = {
       host: "https://mainnet.smartpy.io",
       port: 443,
       network_id: "*",
-      type: "tezos"
+      type: "tezos",
+      secretKey: ""
     },
     zeronet: {
       host: "https://zeronet.smartpy.io",
