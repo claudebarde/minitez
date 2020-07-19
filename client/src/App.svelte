@@ -12,7 +12,7 @@
 
   let storeAddress, miniTezAddress, userAddress;
   let isMobile = false;
-  const { network, local, carthagenet } = config;
+  const { network, local, carthagenet, mainnet } = config;
   if (network === "local") {
     storeAddress = local.storeAddress;
     miniTezAddress = local.miniTezAddress;
