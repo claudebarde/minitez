@@ -85,8 +85,13 @@
         Transfer
       </p>
       <p>
-        <i class="fas fa-chalkboard-teacher" />
-        Tutorial
+        <a
+          href="https://medium.com/@claudebarde/minitez-a-minimalistic-token-on-tezos-f77e8c0f7a97"
+          target="_blank"
+          rel="noopener noreferrer">
+          <i class="fas fa-chalkboard-teacher" />
+          Tutorial
+        </a>
       </p>
       <p>
         <a
@@ -99,7 +104,7 @@
       </p>
       <p>
         <a
-          href="https://better-call.dev/carthagenet/KT1U5Nj9CaknwZn6yb8Dxd8cNmJMQw8M1X2p/code"
+          href="https://better-call.dev/mainnet/KT1TUx83WuwtA2Ku1pi6A9AZqov7CZfYtLUS/code"
           target="_blank"
           rel="noopener noreferrer">
           <i class="fas fa-laptop-code" />
