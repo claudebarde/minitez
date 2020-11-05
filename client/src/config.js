@@ -1,5 +1,5 @@
 export default {
-  network: "mainnet",
+  network: "carthagenet",
   local: {
     storeAddress: "KT1SVmTS2UH9ffbPYbmgLG2hArSH6HT123Ra",
     miniTezAddress: "KT1URhAn8GHBy9Jjtd12CZve81uCERWwWPsb"

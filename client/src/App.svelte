@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { fly } from "svelte/transition";
-  import { Tezos } from "@taquito/taquito";
+  import { TezosToolkit } from "@taquito/taquito";
   import { TezBridgeWallet } from "@taquito/tezbridge-wallet";
   import { BeaconWallet } from "@taquito/beacon-wallet";
   import { ThanosWallet } from "@thanos-wallet/dapp";
@@ -10,7 +10,7 @@
   import Transfer from "./components/Transfer/Transfer.svelte";
   import config from "./config.js";
 
-  let storeAddress, miniTezAddress, userAddress;
+  let storeAddress, miniTezAddress, userAddress, Tezos;
   let isMobile = false;
   const { network, local, carthagenet, mainnet } = config;
   if (network === "local") {
@@ -90,15 +90,13 @@
     if (network === "local") {
       rpc = "http://localhost:8732";
     } else if (network === "carthagenet") {
-      rpc = "https://carthagenet.smartpy.io";
+      rpc = "https://testnet-tezos.giganode.io";
     } else if (network === "mainnet") {
-      rpc = "https://mainnet.smartpy.io";
+      rpc = "https://mainnet-tezos.giganode.io";
     }
-    Tezos.setProvider({
-      rpc
-    });
+    Tezos = new TezosToolkit(rpc);
     // checks if user is on mobile device
-    (function(a) {
+    (function (a) {
       if (
         /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(
           a
@@ -170,7 +168,5 @@
 </main>
 <footer>
   <div>Claude Barde :: 2020</div>
-  <div>
-    <a target="_blank" href="https://icons8.com">Icons by Icons8</a>
-  </div>
+  <div><a target="_blank" href="https://icons8.com">Icons by Icons8</a></div>
 </footer>
